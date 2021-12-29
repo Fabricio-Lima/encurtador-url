@@ -1,3 +1,4 @@
+import { urlModel } from "database/model/url";
 import { Request, Response } from "express";
 import shortid from "shortid";
 import { config } from '../config/constants';
@@ -6,25 +7,32 @@ import { config } from '../config/constants';
 export class URLController {
     public async shorten (req: Request, res: Response): Promise<void> {
 
-        const { originURL } = req.body;
+        const { originUrl } = req.body;
+        const url = await urlModel.findOne({ originUrl });
+
+        if(url){
+            res.json(url);
+            return;
+        }
+
         const hash = shortid.generate();
         const shortUrl = `${config.API_URL}/${hash}`;
+        const newUrl = await urlModel.create({ hash, shortUrl, originUrl });
 
-        res.json({ originURL, hash, shortUrl });
-
+        res.json(newUrl);
     };
 
     public async redirect (req: Request, res: Response): Promise<void> {
 
         const { hash } = req.params;
+        const url = await urlModel.findOne({ hash });
 
-        const url = {
-            originURL: "https://www.google.com/search?client=firefox-b-d&q=json",
-            hash: "oXmagQXQK",
-            shortUrl: "http://localhost:4000/oXmagQXQK"
-        };
+        if(url){
+            res.redirect(url.originUrl);
+            return;
+        }
 
-        res.redirect(url.originURL);
+        res.status(400).json({ error: 'URL not found' });
     };
 
 }

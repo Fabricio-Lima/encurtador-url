@@ -1,6 +1,5 @@
 import { prop, Typegoose } from '@hasezoey/typegoose';
 
-
 export class Url extends Typegoose {
     @prop({ required: true })
     hash: string;
@@ -10,7 +9,6 @@ export class Url extends Typegoose {
 
     @prop({ required: true })
     shortUrl: string;
-
 }
 
 export const urlModel = new Url().getModelForClass(Url);
