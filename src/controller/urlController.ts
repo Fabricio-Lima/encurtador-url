@@ -5,6 +5,7 @@ import config from 'config';
 
 
 const urlApi = config.get<string>('api.URL');
+const portApi = config.get<string>('api.PORT');
 
 export class URLController {
     public async shorten (req: Request, res: Response): Promise<void> {
@@ -18,7 +19,7 @@ export class URLController {
         }
 
         const hash = shortid.generate();
-        const shortUrl = `${urlApi}/${hash}`;
+        const shortUrl = `${urlApi}:${portApi}/${hash}`;
         const newUrl = await urlModel.create({ hash, shortUrl, originUrl });
 
         res.json(newUrl);

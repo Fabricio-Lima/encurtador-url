@@ -4,7 +4,7 @@
   "description": "Encurtador de URL com Node.js",
   "main": "index.js",
   "scripts": {
-    "build:watch": "tsc -w",
+    "build": "tsc -p .",
     "dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/index.ts",
     "start": "node ./dist/index.js"
   },
