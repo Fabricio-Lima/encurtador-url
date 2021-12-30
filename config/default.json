@@ -1,0 +1,10 @@
+{
+    "api": {
+        "PORT": "your_api_port",
+        "URL": "your_api_url"
+        
+    },
+    "database": {
+        "MONGO_CONNECTION": "your_database_url"
+    }
+}
