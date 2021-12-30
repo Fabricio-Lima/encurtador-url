@@ -11,6 +11,7 @@
   "author": "Fabricio L Costa",
   "license": "ISC",
   "devDependencies": {
+    "@types/config": "^0.0.40",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/mongoose": "^5.11.97",
@@ -32,6 +33,7 @@
   },
   "dependencies": {
     "@hasezoey/typegoose": "^5.9.2",
+    "config": "^3.3.6",
     "cors": "^2.8.5",
     "express": "^4.17.2",
     "mongoose": "^6.1.4",

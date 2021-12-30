@@ -2,7 +2,10 @@ import express, { Response } from 'express';
 import cors from 'cors';
 import { URLController } from './controller/urlController';
 import { MongoConnection } from 'database/mongoConnection';
+import config from 'config';
 
+
+const connectionApi = config.get<string>('api.PORT');
 
 const app = express();
 
@@ -22,4 +25,6 @@ app.get('/:hash', urlController.redirect);
 app.get('/', (res: Response) => res.json({success: true}));
 
 //connection api
-app.listen(4000, () => console.log('\n[+] Server is running on port 4000.\n'));
+app.listen(connectionApi, () => {
+    console.log(`\n[+] Server is running on port ${connectionApi}.\n`);
+})

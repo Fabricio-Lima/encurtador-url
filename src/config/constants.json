@@ -1,0 +1,9 @@
+{
+    "api": {
+        "URL": "your_api_url",
+        "PORT": "your_api_port"
+    },
+    "database": {
+        "MONGO_CONNECTION": "your_mongodb_url"
+    }
+}
